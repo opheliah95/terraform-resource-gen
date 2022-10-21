@@ -1,3 +1,5 @@
 .terraform*
 *.csv
 csv/
+# local statefile
+state.json 
