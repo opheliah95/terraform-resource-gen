@@ -5,6 +5,11 @@ resource "aws_s3_bucket" "sample-bucket" {
     Name        = var.s3_bucket_tag
     Environment = var.aws_env
   }
+
+  # Prevent accidental deletion of this S3 bucket
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_s3_bucket_acl" "example" {
@@ -25,5 +30,10 @@ resource "aws_s3_object" "object" {
   bucket = aws_s3_bucket.sample-bucket.id
   key    = var.s3_bucket_name
   source = local.file_path
+
+  # Prevent accidental deletion of this S3 bucket
+  lifecycle {
+    prevent_destroy = true
+  }
 
 }
